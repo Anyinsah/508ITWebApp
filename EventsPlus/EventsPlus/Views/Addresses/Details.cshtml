@@ -1,0 +1,72 @@
+﻿@model EventsPlus.Models.Address
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Address</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StreetAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StreetAddress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AddressCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AddressCode.AddressCodeID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.AddressID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<h1>Address Codes</h1>
+
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Postcode
+            </th>
+            <th>
+                Town
+            </th>
+            <th>
+                County
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.AddressCodes as IEnumerable<AddressCode>)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Town)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.County)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AddressCodeID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.AddressCodeID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AddressCodeID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

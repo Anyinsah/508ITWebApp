@@ -1,0 +1,89 @@
+﻿@model EventsPlus.ViewModels.StreetAddressCodes
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                StreetAddress
+            </th>
+            <th>
+                AddressCode
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Addresses)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StreetAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressCode.AddressCodeID)
+                </td>
+                <td>
+                    <a asp-action="Index" asp-route-id="@item.AddressID">Select</a> |
+                    <a asp-action="Edit" asp-route-id="@item.AddressID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.AddressID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AddressID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.AddressCodes != null)
+{
+
+<h1>Associated Postcodes: </h1>
+
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Postcode
+            </th>
+            <th>
+                Town
+            </th>
+            <th>
+                County
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AddressCodes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Town)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.County)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AddressCodeID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.AddressCodeID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AddressCodeID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
